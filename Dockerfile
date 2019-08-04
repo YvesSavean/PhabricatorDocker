@@ -19,19 +19,28 @@ ENV MYSQL_PORT=3306
 RUN yum -y distribution-synchronization
 
 #Installation des dépendances necessaires
-RUN yum install -y git httpd php php-mysql php-gd php-curl php-apc php-cli php-mbstring
+RUN yum install -y git httpd php php-mysql php-gd php-curl php-apc php-cli php-mbstring gettext
 
 #Installation de phabricator
 RUN mkdir -p $APACHE_ROOT_DIR && cd $APACHE_ROOT_DIR && git clone https://github.com/phacility/libphutil.git --branch stable && git clone https://github.com/phacility/arcanist.git --branch stable && git clone https://github.com/phacility/phabricator.git --branch stable
 #on donne des droits a l'utilisateur phabricator
 RUN chown -R phabricator:root $BASEDIR_APACHE && chown phabricator:root /usr/sbin/httpd && chown -R phabricator:root /run/httpd && chown -R phabricator:root $APACHE_ROOT_DIR 
 
+#Mise en place du fichier de configuration phabricator
+COPY local.conf /tmp/local.template
+
+#Mise en place du fichier de configuration apache
+COPY httpd.conf /tmp/httpd.template
+
+#on donne des droits a l'utilisateur phabricator
+RUN chown phabricator:root /tmp/local.template && chown phabricator:root /tmp/httpd.template
+
 #Copie de l'entrypoint et on donne les droits a l'utilisateur phabricator
 COPY docker-entrypoint.sh /opt/var/docker-entrypoint.sh 
 RUN chown phabricator:root /opt/var/docker-entrypoint.sh && chmod +x /opt/var/docker-entrypoint.sh
 
 #Utilisation du user phabricator pour la suite possedant les droits apaches et phabricator
-USER phabricator
+#USER phabricator
 
 EXPOSE 80
 ENTRYPOINT ["/opt/var/docker-entrypoint.sh"]
