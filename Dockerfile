@@ -24,7 +24,7 @@ RUN yum install -y git httpd php php-mysql php-gd php-curl php-apc php-cli php-m
 #Installation de phabricator
 RUN mkdir -p $APACHE_ROOT_DIR && cd $APACHE_ROOT_DIR && git clone https://github.com/phacility/libphutil.git --branch stable && git clone https://github.com/phacility/arcanist.git --branch stable && git clone https://github.com/phacility/phabricator.git --branch stable
 #on donne des droits a l'utilisateur phabricator
-RUN chown -R phabricator:root $BASEDIR_APACHE && chown phabricator:root /usr/sbin/httpd && chown -R phabricator:root $APACHE_ROOT_DIR
+RUN chown -R phabricator:root $BASEDIR_APACHE && chown phabricator:root /usr/sbin/httpd && chown -R phabricator:root /run/httpd && chown -R phabricator:root $APACHE_ROOT_DIR 
 
 #Copie de l'entrypoint et on donne les droits a l'utilisateur phabricator
 COPY docker-entrypoint.sh /opt/var/docker-entrypoint.sh 

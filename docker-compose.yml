@@ -3,7 +3,7 @@ services:
   phabricator: 
     image: phabricator:1.0.0-SNAPSHOT
     ports:
-        - "80:80"
+        - "8080:8080"
     environment:
         APACHE_ROOT_DIR: "/var/www/html"
         BASEDIR_APACHE: "/etc/httpd/"
