@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#envsubst < "/tmp/httpd.template" > "${BASEDIR_APACHE}/conf/httpd.conf"
+envsubst < "/tmp/httpd.template" > "${BASEDIR_APACHE}/conf/httpd.conf"
 
 #On met en place l'host du mysql localhost par defaut
 envsubst < "/tmp/local.template" >  "${APACHE_ROOT_DIR}/phabricator/conf/local/local.json"
