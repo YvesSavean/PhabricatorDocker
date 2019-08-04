@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 #Mise en place du fichier de configuration apache
 COPY httpd.conf /tmp/httpd.template
@@ -10,9 +10,11 @@ $APACHE_ROOT_DIR/phabricator/bin/config set mysql.host $MYSQL_HOST
 $APACHE_ROOT_DIR/phabricator/bin/config set mysql.user $MYSQL_USER
 #On met en place le password du mysql admin par defaut
 $APACHE_ROOT_DIR/phabricator/bin/config set mysql.pass $MYSQL_PASSWORD
+#On met en place le port du mysql 3306 par defaut 
+$APACHE_ROOT_DIR/phabricator/bin/config set mysql.port $MYSQL_PORT
 
 #On met a jour la database si besoin
-$APACHE_ROOT_DIR/phabricator/bin/storage upgrade --user $MYSQL_USER --password $MYSQL_PASSWORD
+$APACHE_ROOT_DIR/phabricator/bin/storage upgrade
 
 #on demarrage apache
 /usr/sbin/httpd -D FOREGROUND
