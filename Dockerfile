@@ -14,7 +14,8 @@ ENV MYSQL_USER=root
 ENV MYSQL_PASSWORD=admin
 
 #Copie de l'entrypoint et on donne les droits a l'utilisateur phabricator
-COPY docker-entrypoint.sh /opt/var/docker-entrypoint.sh && chown phabricator:root /opt/var/docker-entrypoint.sh && chmod +x /opt/var/docker-entrypoint.sh
+COPY docker-entrypoint.sh /opt/var/docker-entrypoint.sh 
+RUN chown phabricator:root /opt/var/docker-entrypoint.sh && chmod +x /opt/var/docker-entrypoint.sh
 
 #Mise a jour du system
 RUN yum -y distribution-synchronization
@@ -31,4 +32,4 @@ RUN chown -R phabricator:root $BASEDIR_APACHE && chown phabricator:root /usr/sbi
 USER phabricator
 
 EXPOSE 80
-ENTRYPOINT[/opt/var/docker-entrypoint.sh]
+ENTRYPOINT ["/opt/var/docker-entrypoint.sh"]

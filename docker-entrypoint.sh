@@ -1,3 +1,4 @@
+ #!/bin/bash
 
 #Mise en place du fichier de configuration apache
 COPY httpd.conf /tmp/httpd.template
