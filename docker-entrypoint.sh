@@ -8,5 +8,8 @@ envsubst < "/tmp/local.template" >  "${APACHE_ROOT_DIR}/phabricator/conf/local/l
 #On met a jour la database si besoin
 cd ${APACHE_ROOT_DIR}/phabricator && ./bin/storage upgrade --force
 
+#demarrage du deamon phabricator
+${APACHE_ROOT_DIR}/phabricator/bin/phd start
+
 #on demarrage apache
 /usr/sbin/httpd -D FOREGROUND
