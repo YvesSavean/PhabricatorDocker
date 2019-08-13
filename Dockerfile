@@ -13,7 +13,7 @@ ENV MYSQL_HOST=localhost
 ENV MYSQL_USER=root
 ENV MYSQL_PASSWORD=admin
 ENV MYSQL_PORT=3306
-ENV REPO="/var/repo/"s
+ENV REPO="/var/repo/"
 
 
 #Mise a jour du system
