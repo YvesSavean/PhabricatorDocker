@@ -1,14 +1,24 @@
 version: '2'
 services: 
   phabricator: 
-    image: phabricator:1.0.0-SNAPSHOT
+    image: phabricator:1.0.1-SNAPSHOT
     ports:
-        - "80:80"
+        - "80:8081"
+        - "8082:8082"
+        - "8083:8083"
+    restart: always
+    volumes:
+        - /data/ZUDA0/phabricator:/var/repo
     environment:
+        APACHE_PORT: 8081
         APACHE_ROOT_DIR: "/var/www/html"
-        BASEDIR_APACHE: "/etc/httpd/"
-        DOMAIN: "172.18.0.1"
-        MYSQL_HOST: "172.18.0.1"
+        BASEDIR_APACHE: "/etc/httpd/"      
+        REGISTRY_NPM: "http://10.166.93.83:8081/repository/npm-public/"
+        NPM_VERIFY_SSL: "false"
+        NOTIFICATION_PORT_CLIENT: 8082
+        NOTIFICATION_PORT_ADMIN: 8083
+        DOMAIN: "10.156.22.32"
+        MYSQL_HOST: "elzudeggscas.yres.ytech"
         MYSQL_USER: "root"
         MYSQL_PASSWORD: "admin"
         MYSQL_PORT: 3306

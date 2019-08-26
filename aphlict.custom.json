@@ -1,0 +1,23 @@
+{
+  "servers": [{
+      "type": "client",
+      "port": ${NOTIFICATION_PORT_CLIENT},
+      "listen": "0.0.0.0",
+      "ssl.key": null,
+      "ssl.cert": null,
+      "ssl.chain": null
+    },
+    {
+      "type": "admin",
+      "port": ${NOTIFICATION_PORT_ADMIN},
+      "listen": "0.0.0.0",
+      "ssl.key": null,
+      "ssl.cert": null,
+      "ssl.chain": null
+    }
+  ],
+  "logs": [{
+    "path": "/var/log/aphlict.log"
+  }],
+  "pidfile": "/var/tmp/aphlict/pid/aphlict.pid"
+}
