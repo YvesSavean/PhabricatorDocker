@@ -1,0 +1,8 @@
+# Fork du Projet https://github.com/YvesSavean/PhabricatorDocker
+
+Pour mettre a Jour Phabricator lancer les commandes
+
+git clone https://github.com/phacility/libphutil.git && git clone https://github.com/phacility/arcanist.git && git clone https://github.com/phacility/phabricator.git
+
+
+docker run -d -v /data/ZUDA0/phabricator:/var/repo -p 0.0.0.0:80:8081 -p 0.0.0.0:8082:8082 -p 0.0.0.0:8089:8089 --restart="always" -e NOTIFICATION_PORT_CLIENT=8082 -e NOTIFICATION_PORT_ADMIN=8089 -e DOMAIN="elzudeggscas.yres.ytech" -e MYSQL_HOST="elzudeggscas.yres.ytech" -e MYSQL_USER="root" -e MYSQL_PASSWORD="admin" -e MYSQL_PORT=3306 --name phabricator-latest phabricator:latest
